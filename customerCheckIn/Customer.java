@@ -10,6 +10,9 @@ public class Customer extends Person {
         this.age = age;
         this.moneyAvailable = moneyAvailable;
 
+        super.name = name;
+        super.age = age;
+
         canDrink = (age >=21) ? true : false;
     }
 

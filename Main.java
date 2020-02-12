@@ -1,21 +1,13 @@
 import java.util.*;
 
 public class Main {
-    static Scanner reader = new Scanner(System.in);
 
     public static void main (String[] args) {
 
         Customer[] customers = {};
+        Scanner reader = new Scanner(System.in);
 
-        customers = checkInCustomer(customers);
-
-        for (int i = 0; i < customers.length; i++) {
-            Customer temp = customers[i];
-
-            System.out.println(temp.getName() + ", " + temp.getAge() + " has $" + temp.getMoneyAvailable());
-        }
-
-        customers = checkInCustomer(customers);
+        customers = checkInCustomer(customers, reader);
 
         for (int i = 0; i < customers.length; i++) {
             Customer temp = customers[i];
@@ -23,7 +15,15 @@ public class Main {
             System.out.println(temp.getName() + ", " + temp.getAge() + " has $" + temp.getMoneyAvailable());
         }
 
-        customers = checkInCustomer(customers);
+        customers = checkInCustomer(customers, reader);
+
+        for (int i = 0; i < customers.length; i++) {
+            Customer temp = customers[i];
+
+            System.out.println(temp.getName() + ", " + temp.getAge() + " has $" + temp.getMoneyAvailable());
+        }
+
+        customers = checkInCustomer(customers, reader);
 
         for (int i = 0; i < customers.length; i++) {
             Customer temp = customers[i];
@@ -33,7 +33,7 @@ public class Main {
 
     }
 
-    static Customer[] checkInCustomer(Customer[] customers) {
+    static Customer[] checkInCustomer(Customer[] customers, Scanner reader) {
         int length = customers.length;
         Customer[] newCustomers = new Customer[length + 1];
 
@@ -45,6 +45,9 @@ public class Main {
         System.out.print("How much money do you have available? ");
         double m = reader.nextDouble();
 
+        // capture \n
+        reader.nextLine();
+
         Customer c = new Customer(n, a, m);
 
         // return original list if new customer is underage
@@ -53,7 +56,11 @@ public class Main {
         // check if customer is already in system
         for (int i = 0; i < customers.length; i++) {
             Customer temp = customers[i];
-            if ((temp.getName() == c.getName()) && (temp.getAge() == c.getAge()) && (temp.getMoneyAvailable() == c.getMoneyAvailable())) {
+            boolean sameName = (temp.getName().equals(c.getName())) ? true : false;
+            boolean sameAge = (temp.getAge() == c.getAge()) ? true : false;
+            boolean sameMoney = (temp.getMoneyAvailable() == c.getMoneyAvailable()) ? true : false;
+
+            if (sameName && sameAge && sameMoney) {
                 // customer already exists, return original list
                 return customers;
             } else {
