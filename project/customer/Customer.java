@@ -1,3 +1,5 @@
+package project.customer;
+
 public class Customer extends Person {
     private String name;
     private int age;
@@ -5,7 +7,7 @@ public class Customer extends Person {
     private int numDrinksBought = 0;
     private double moneyAvailable;
 
-    Customer(String name, int age, double moneyAvailable) {
+    public Customer(String name, int age, double moneyAvailable) {
         this.name = name;
         this.age = age;
         this.moneyAvailable = moneyAvailable;

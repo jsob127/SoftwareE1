@@ -1,4 +1,7 @@
+package project;
+
 import java.util.*;
+import project.customer.*;
 
 public class Main {
 
@@ -56,7 +59,7 @@ public class Main {
         // check if customer is already in system
         for (int i = 0; i < customers.length; i++) {
             Customer temp = customers[i];
-            boolean sameName = (temp.getName().equals(c.getName())) ? true : false;
+            boolean sameName = (temp.getName().equalsIgnoreCase(c.getName())) ? true : false;
             boolean sameAge = (temp.getAge() == c.getAge()) ? true : false;
             boolean sameMoney = (temp.getMoneyAvailable() == c.getMoneyAvailable()) ? true : false;
 
