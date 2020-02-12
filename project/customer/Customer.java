@@ -23,4 +23,24 @@ public class Customer extends Person {
     public boolean getCanDrink() { return canDrink; }
     public int getNumDrinksBought() { return numDrinksBought; }
     public double getMoneyAvailable() { return moneyAvailable; }
+    public void addDrinkBought()
+    {
+        numDrinksBought++;
+    }
+    public void setCanDrinkFalse()
+    {
+        canDrink = false;
+    }
+    public void subtractMoneyAvailable(int cost)
+    {
+        if((moneyAvailable - cost) >= 0)
+        {
+            moneyAvailable -= cost;
+        }
+        else
+        {
+            System.out.println("Not enough funds available");
+        }
+    }
+
 }
