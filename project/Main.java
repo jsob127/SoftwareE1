@@ -34,7 +34,7 @@ public class Main {
         //     System.out.println(temp.getName() + ", " + temp.getAge() + " has $" + temp.getMoneyAvailable());
         // }
 
-        tip(reader, customers[0]);
+        orderDrink(reader, customers[0]);
 
     }
 
@@ -77,6 +77,14 @@ public class Main {
         newCustomers[length] = c;
 
         return newCustomers;
+    }
+
+    static void orderDrink(Scanner r, Customer c) {
+        // order drink code
+
+        // tip
+
+        tip(r, c);
     }
 
     static void tip(Scanner r, Customer c) {
