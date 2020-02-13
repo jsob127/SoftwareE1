@@ -31,7 +31,7 @@ public class Customer extends Person {
     {
         canDrink = false;
     }
-    public void subtractMoneyAvailable(int cost)
+    public void subtractMoneyAvailable(double cost)
     {
         if((moneyAvailable - cost) >= 0)
         {
