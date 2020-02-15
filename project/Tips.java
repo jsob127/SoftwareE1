@@ -1,12 +1,14 @@
-import java.text.NumberFormat;
-import java.util.Locale;
+package project;
+
+import java.text.*;
+import java.util.*;
 
 public class Tips
 {
-    private int totalTips;
+    private double totalTips;
     private NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
-    public void addTip(int tipAmount)
+    public void addTip(double tipAmount)
     {
         totalTips += tipAmount;
         String tip = format.format(tipAmount);
