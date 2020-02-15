@@ -1,5 +1,7 @@
 package project.customer;
 
+import project.drinks.*;
+
 public class Customer extends Person {
     private String name;
     private int age;
@@ -23,14 +25,16 @@ public class Customer extends Person {
     public boolean getCanDrink() { return canDrink; }
     public int getNumDrinksBought() { return numDrinksBought; }
     public double getMoneyAvailable() { return moneyAvailable; }
+    
     public void addDrinkBought()
     {
         numDrinksBought++;
     }
-    public void setCanDrinkFalse()
+    public void setCanDrink(boolean state)
     {
-        canDrink = false;
+        canDrink = state;
     }
+
     public void subtractMoneyAvailable(double cost)
     {
         if((moneyAvailable - cost) >= 0)
