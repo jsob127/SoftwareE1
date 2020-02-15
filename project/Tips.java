@@ -2,6 +2,8 @@ package project;
 
 import java.text.*;
 import java.util.*;
+import project.customer.*;
+import project.drinks.*;
 
 public class Tips
 {

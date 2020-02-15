@@ -1,5 +1,7 @@
 package project.customer;
 
+import project.drinks.*;
+
 public class DrinkTracker
 {
     public Customer customer;
@@ -13,7 +15,7 @@ public class DrinkTracker
 
     public void addDrink()
     {
-        if (customer.getCanDrink() == true)
+        if (customer.getCanDrink())
         {
             customer.addDrinkBought();
         }
@@ -23,9 +25,12 @@ public class DrinkTracker
         }
     }
 
-    public void checkCustomerCanDrink()
+    public boolean checkCustomerCanDrink()
     {
-        if(customer.getCanDrink() && customer.getNumDrinksBought() >= max_drinks);
-            customer.setCanDrinkFalse();
+        if(customer.getCanDrink() && customer.getNumDrinksBought() >= max_drinks) {
+            customer.setCanDrink(false);
+        }
+
+        return customer.getCanDrink();
     }
 }
