@@ -1,14 +1,22 @@
-package project;
-
-import java.text.*;
-import java.util.*;
-import project.customer.*;
-import project.drinks.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Tips
 {
+    private static Tips tips = new Tips();
+
     private double totalTips;
-    private NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+    private NumberFormat format;
+
+    private Tips() {
+        this.totalTips = 0;
+        this.format = NumberFormat.getCurrencyInstance(Locale.US);
+    }
+
+    public static Tips getInstance()
+    {
+        return tips;
+    }
 
     public void addTip(double tipAmount)
     {
