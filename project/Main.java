@@ -1,9 +1,4 @@
-package project;
-
-// import java.sql.SQLOutput;
-import java.util.*;
-import project.customer.*;
-import project.drinks.*;
+import java.util.Scanner;
 
 public class Main {
 
@@ -76,7 +71,7 @@ public class Main {
                     }
                     System.out.println("You, " + customers[customerIndex].getName() + ", have $" + customers[customerIndex].getMoneyAvailable() + " left.");
                     continue;
-                    case 4: // close tab
+                case 4: // close tab
                     checkoutCustomer(reader, customers);
                     continue;
                 case 5: // end program
@@ -274,12 +269,19 @@ public class Main {
         System.out.println("5. " + paloma.toString());
     }
 
-    static void tip(Scanner r, Customer c) {
-        Tips tip = new Tips();
-        while (true) {
+    static void tip(Scanner r, Customer c)
+    {
+        // Singleton design pattern has been implemented therefore the old instantiation below will no longer work
+        //Tips tip = new Tips();
+        // Singleton design pattern will prevent instantiation
+        // This design pattern is meant solely to get its static instance to the main method to ensure that only a single object is created
+        Tips tip = Tips.getInstance();
+        while (true)
+        {
             System.out.print("Would you like to leave a tip? y/n ");
             String choice = r.nextLine();
-            if (choice.equalsIgnoreCase("y")) {
+            if (choice.equalsIgnoreCase("y"))
+            {
                 System.out.print("How much would you like to tip? ");
                 double amt = r.nextDouble();
                 tip.addTip(amt);
@@ -290,10 +292,14 @@ public class Main {
                 r.nextLine();
                 System.out.println("Thank you.");
                 break;
-            } else if (choice.equalsIgnoreCase("n")) {
+            }
+            else if (choice.equalsIgnoreCase("n"))
+            {
                 System.out.println("Thank you.");
                 break;
-            } else {
+            }
+            else
+            {
                 System.out.println("Invalid entry. Try again...");
             }
         }
