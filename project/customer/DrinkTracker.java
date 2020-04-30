@@ -1,6 +1,6 @@
-package project.customer;
+package customer;
 
-import project.drinks.*;
+import drinks.*;
 
 public class DrinkTracker
 {

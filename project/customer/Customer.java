@@ -1,6 +1,6 @@
-package project.customer;
+package customer;
 
-import project.drinks.*;
+import drinks.*;
 
 public class Customer extends Person {
     private String name;
@@ -18,6 +18,10 @@ public class Customer extends Person {
         super.age = age;
 
         canDrink = (age >=21) ? true : false;
+    }
+
+    public Customer() {
+
     }
 
     public String getName() { return name; }

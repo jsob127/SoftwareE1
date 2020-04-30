@@ -1,6 +1,6 @@
-package project.drinks;
+package drinks;
 
-import project.customer.*;
+import customer.*;
 
 public class Ingredient
 {

@@ -1,4 +1,9 @@
-import java.util.Scanner;
+
+
+// import java.sql.SQLOutput;
+import java.util.*;
+import customer.*;
+import drinks.*;
 
 public class Main {
 
@@ -49,9 +54,9 @@ public class Main {
                     continue;
                 case 2: // order a drink
                     // find customer
-                    int customerIndex = findCustomer(reader, customers);
-                    if (customerIndex < 0) {
-                        System.out.println("Customer not found. Please check in first.\n");
+                    Customer customer = findCustomer(reader, customers);
+                    if (customer instanceof NullCustomer) {
+                        customer.getName();
                         continue;
                     }
 
@@ -60,16 +65,16 @@ public class Main {
                     displayMenu();
 
                     // order drink
-                    orderDrink(reader, customers[customerIndex]);
+                    orderDrink(reader, customer);
                     continue;
                 case 3: // check balance
                     // find customer
-                    customerIndex = findCustomer(reader, customers);
-                    if (customerIndex < 0) {
-                        System.out.println("Customer not found. Please check in first.\n");
+                    customer = findCustomer(reader, customers);
+                    if (customer instanceof NullCustomer) {
+                        customer.getName();
                         continue;
                     }
-                    System.out.println("You, " + customers[customerIndex].getName() + ", have $" + customers[customerIndex].getMoneyAvailable() + " left.");
+                    System.out.println("You, " + customer.getName() + ", have $" + customer.getMoneyAvailable() + " left.");
                     continue;
                 case 4: // close tab
                     checkoutCustomer(reader, customers);
@@ -129,8 +134,8 @@ public class Main {
         return newCustomers;
     }
 
-    static int findCustomer(Scanner r, Customer[] c) {
-        int retVal = -1;
+    static Customer findCustomer(Scanner r, Customer[] c) {
+        Customer customer = new NullCustomer();
 
         System.out.print("Please enter your full name: ");
         String name = r.nextLine();
@@ -145,32 +150,37 @@ public class Main {
             int tAge = c[i].getAge();
 
             if (tName.equalsIgnoreCase(name) && tAge == age) {
-                retVal = i;
+                customer = c[i];
                 break;
             }
         }
 
-        return retVal;
+        return customer;
     }
 
     static Customer[] checkoutCustomer(Scanner r, Customer[] c) {
-        int customerIndex = findCustomer(r, c);
-        if (customerIndex < 0) {
+        Customer customer = findCustomer(r, c);
+        if (customer instanceof NullCustomer) {
             System.out.println("Customer not found.\n");
             return c;
         }
 
         Customer[] newC = new Customer[c.length-1];
+        int flag = 0;
 
         for (int i = 0; i < c.length; i++) {
-            if (i < customerIndex) {
+            if (!c[i].getName().equals(customer.getName()) && flag == 0) {
                 newC[i] = c[i];
-            } else if (i > customerIndex) {
+            } else if (c[i].getName().equals(customer.getName())) {
+                flag = 1;
+            }
+            else
+            {
                 newC[i-1] = c[i];
             }
         }
 
-        System.out.println("Goodbye " + c[customerIndex].getName() + ". Your closing balance left is $" + c[customerIndex].getMoneyAvailable());
+        System.out.println("Goodbye " + customer.getName() + ". Your closing balance left is $" + customer.getMoneyAvailable());
 
         return newC;
     }
